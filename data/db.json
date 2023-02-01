@@ -4,6 +4,11 @@
       "name": "Bob",
       "team": "blue",
       "id": 1
+    },
+    {
+      "name": "panda",
+      "team": "purple",
+      "id": 2
     }
   ]
 }
