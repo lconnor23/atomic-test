@@ -13,7 +13,9 @@ export default function Form() {
 
         fetch('https://paper-dragonfly.ue.r.appspot.com/athlete', {
             method: 'POST',
-            headers:{"Content-Type": "application/json"},
+            mode: 'no-cors',
+            crossorigin: true,
+            headers:{"Content-Type": "application/json", "Access-Control-Allow-Origin": "http://localhost:3000/"},
             body: JSON.stringify(username)
         }).then(() => {
             console.log('athlete added')

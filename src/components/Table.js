@@ -50,16 +50,23 @@ export default function Table() {
           }
         ]
       
-    // const url = 'https://paper-dragonfly.ue.r.appspot.com/athlete'
+    const url = 'https://paper-dragonfly.ue.r.appspot.com/athlete'
 
-    // fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data.body.athletes[0].username)
-    //     })
-    //     .catch(err => {
-    //         console.log(`error${err}`)
-    //     });
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      crossorigin: true,
+      headers:{"Content-Type": "application/json", 
+        "Access-Control-Allow-Origin": "http://localhost:3000/"}
+    }).then(() => {
+      console.log('success')
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
+        // })
+        // .catch(err => {
+        //     console.log(`error${err}`)
+        });
   return (
     <div>
         <InputText
