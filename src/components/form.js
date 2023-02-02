@@ -1,22 +1,22 @@
 import {useState} from 'react'
 
 export default function Form() {
-    const [name, setName] = useState('');
+    const [username, setName] = useState('');
     const [team, setTeam] = useState('red');
     const [isPending, setIsPending] = useState('false')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const player = {name, team}
-        console.log(player)
+        const athletes = {username, team}
+        console.log(athletes)
         setIsPending(true)
 
-        fetch('http://localhost:8000/players', {
+        fetch('https://paper-dragonfly.ue.r.appspot.com/athlete', {
             method: 'POST',
             headers:{"Content-Type": "application/json"},
-            body: JSON.stringify(player)
+            body: JSON.stringify(username)
         }).then(() => {
-            console.log('player added')
+            console.log('athlete added')
             setIsPending(false)
         })
     }
@@ -28,7 +28,7 @@ export default function Form() {
                 <input 
                     type = 'text' 
                     required
-                    value = {name}
+                    value = {username}
                     onChange={(e) => setName(e.target.value)}>
                     
                 </input>
