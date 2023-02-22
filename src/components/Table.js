@@ -2,16 +2,32 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { useState } from "react";
-import { FilterMatchMode } from "primereact/api"
-import { InputText } from "primereact/inputtext"
-
+import { useEffect, useState } from "react";
+import { FilterMatchMode } from "primereact/api";
+import { InputText } from "primereact/inputtext";
+import Axios from "axios"
 
 export default function Table() {
+    // const[inputData, setData] = useState("");
     const [filters, setFilters] = useState({
         global: {value: null, matchMode: FilterMatchMode.CONTAINS}
-    })
-    
+    });
+    // const fetchData = async() => {
+    //   await Axios.get('https://paper-dragonfly.ue.r.appspot.com/athlete', {
+    //     method: 'GET',
+    //     mode: 'no-cors',
+    //     crossorigin: true,
+    //     headers:{"Content-Type": "application/json", 
+    //       "Access-Control-Allow-Origin": "http://localhost:3000/"}
+    //   })
+    //     .then((res) => {
+    //       res.json()
+    //       setData(res.data)
+    //       console.log(data)        
+    //     }
+    //     )
+    // }
+    // fetchData()
      const players = [
           {
             "name": "Bob",
@@ -52,21 +68,25 @@ export default function Table() {
       
     const url = 'https://paper-dragonfly.ue.r.appspot.com/athlete'
 
-    fetch(url, {
+    const fetchData = async() => {
+      await fetch(url, {
       method: 'GET',
-      mode: 'no-cors',
       crossorigin: true,
-      headers:{"Content-Type": "application/json", 
-        "Access-Control-Allow-Origin": "http://localhost:3000/"}
-    }).then(() => {
-      console.log('success')
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
-        // })
-        // .catch(err => {
-        //     console.log(`error${err}`)
+      headers:{ "Content-Type": "application/json"}
+    }).then((res) => {
+      console.log('success')})
+        .then(res => {
+          res.json()
+        console.log(res.body.athletes)
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => {
+            console.log(`error${err}`)
         });
+      }
+      fetchData()
   return (
     <div>
         <InputText
